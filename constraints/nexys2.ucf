@@ -1,0 +1,5 @@
+# Clock Input (50 MHz on Nexys 2 is Pin B8)
+NET "clk_50mhz" LOC = "B8";
+
+# LED Output (LD0 on Nexys 2 is Pin J14)
+NET "led_out"   LOC = "J14";
