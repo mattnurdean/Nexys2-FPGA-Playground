@@ -1,0 +1,36 @@
+# Xilinx ISE Garbage
+_xmsgs/
+xst/
+_ngo/
+*.lso
+*.ngc
+*.ngd
+*.ngr
+*.bit
+*.bgn
+*.twr
+*.pcf
+*.drc
+*.gise
+*.ise
+*.xise
+*.restore
+*.log
+*.cmd_log
+*.xrpt
+*.xpi
+*.html
+*.syr
+*.par
+*.pad
+*.unroutes
+*.ptwx
+*.xwbt
+
+# Python Garbage
+__pycache__/
+*.pyc
+
+# OS Garbage
+.DS_Store
+Thumbs.db
