@@ -34,3 +34,5 @@ __pycache__/
 # OS Garbage
 .DS_Store
 Thumbs.db
+
+ise_build/
