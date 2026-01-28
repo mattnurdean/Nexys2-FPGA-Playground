@@ -1,32 +1,56 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.NUMERIC_STD.ALL;
+class BlinkyFPGA:
+    def __init__(self, simulation_mode=False):
+        # INTERNAL SIGNALS
+        self.counter = 0 
+        
+        # PORTS (Matching EDA Playground Logic)
+        self.clk = 0
+        self.sw = 0  # Switch Input
+        self.led = 0 # LED Output
 
-entity blinky is
-    Port ( 
-        clk_50mhz : in  STD_LOGIC;  -- The 50MHz clock from the board
-        led_out   : out STD_LOGIC   -- The signal going to the LED
-    );
-end blinky;
+        # PARAMETERIZATION
+        # simulation_mode = True  -> Uses Bit 4 (Fast for EDA Playground)
+        # simulation_mode = False -> Uses Bit 25 (Slow for Real Board)
+        if simulation_mode:
+            self.target_bit = 4
+            print(">>> MODE: Simulation Speedup (Bit 4)")
+        else:
+            self.target_bit = 25
+            print(">>> MODE: Real Hardware (Bit 25)")
 
-architecture Behavioral of blinky is
-    -- We need a counter to slow down the clock.
-    -- 50MHz = 50,000,000 ticks per second.
-    -- Log2(50,000,000) is approx 25.5, so we need a 26-bit counter.
-    signal counter : unsigned(25 downto 0) := (others => '0');
+    def rising_edge_clk(self):
+        """
+        Simulates one clock cycle (process(clk) in VHDL)
+        """
+        # 1. INCREMENT
+        self.counter += 1
+        
+        # Simulate 26-bit Rollover (Hardware Limit)
+        if self.counter >= 67108864: # 2^26
+            self.counter = 0
+
+        # 2. SWITCH LOGIC (The Advanced Part)
+        # matches: if sw(0) = '1' then ...
+        if self.sw == 1:
+            # 3. BLINK LOGIC
+            # matches: led <= counter(target_bit);
+            self.led = (self.counter >> self.target_bit) & 1
+        else:
+            # matches: else led <= '0';
+            self.led = 0
+
+# --- TEST SCENARIO ---
+if __name__ == "__main__":
+    # 1. Setup as Real Hardware
+    dut = BlinkyFPGA(simulation_mode=False)
     
-begin
+    # 2. Turn Switch ON (Crucial step!)
+    dut.sw = 1 
+    
+    print(f"{'Time':<10} | {'Counter':<10} | {'LED'}")
+    print("-" * 30)
 
-    process(clk_50mhz)
-    begin
-        if rising_edge(clk_50mhz) then
-            -- Increment counter every clock cycle
-            counter <= counter + 1;
-        end if;
-    end process;
-
-    -- Connect the most significant bit (MSB) to the LED.
-    -- This bit flips roughly every 0.67 seconds (2^25 / 50MHz).
-    led_out <= counter(25);
-
-end Behavioral;
+    # 3. Run for a few cycles
+    for i in range(10):
+        dut.rising_edge_clk()
+        print(f"{i:<10} | {dut.counter:<10} | {dut.led}")
