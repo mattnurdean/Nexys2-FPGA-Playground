@@ -1,38 +1,38 @@
-# Xilinx ISE Garbage
-_xmsgs/
-xst/
-_ngo/
+# Xilinx ISE Temporary Files
+*.ise
+*.xise
+*.gise
+*.bld
+*.cmd_log
 *.lso
+*.ncd
 *.ngc
 *.ngd
 *.ngr
-*.bit
-*.bgn
-*.twr
-*.pcf
-*.drc
-*.gise
-*.ise
-*.xise
-*.restore
-*.log
-*.cmd_log
-*.xrpt
-*.xpi
-*.html
-*.syr
-*.par
 *.pad
+*.par
+*.pcf
+*.prj
+*.stx
+*.syr
+*.twr
+*.twx
 *.unroutes
-*.ptwx
-*.xwbt
+*.ut
+*.xst
+*.xpi
+*.bit
+*.drc
+*_summary.html
+*_pad.txt
 
-# Python Garbage
+# Temporary Folders
+_xmsgs/
+ise_config/
+xst/
+_ngo/
+
+# Python Cache
 __pycache__/
-*.pyc
-
-# OS Garbage
-.DS_Store
-Thumbs.db
-
-ise_build/
+# Ignore the entire ISE build directory
+blinky_project/
