@@ -13,7 +13,7 @@ Upgraded the standard "Blinky" design to include user input.
   - If SW0 = 0: LED is Forced OFF.
 
 ## 2. Methodology: "Simulation Speedup"
-To verify the logic in a cloud simulator (EDA Playground), cannot wait 0.6 seconds (33 million clock cycles) for a blink. Implemented a parameterizable design strategy.
+To verify the logic in a cloud simulator (EDA Playground), we cannot wait 0.6 seconds (33 million clock cycles) for a blink. We implemented a parameterizable design strategy.
 
 - **Real Hardware:** Uses Bit 25. Frequency: ~0.74 Hz. Purpose: Human-visible blinking.
 - **Simulation:** Uses Bit 4. Frequency: ~1.5 MHz. Purpose: Fast toggling for UVM Waveforms.
@@ -22,54 +22,28 @@ To verify the logic in a cloud simulator (EDA Playground), cannot wait 0.6 secon
 Before writing VHDL, verified the logic using a Python script (blinky_model.py). This serves as the "Golden Reference" to prove the math is correct.
 
 **Script Execution Log:**
-Command: python 01_Blinky/verification/blinky_model.py
+Command: `python 01_Blinky/verification/blinky_model.py`
 
-Output:
+```text
 >>> MODE: Simulation Speedup (Bit 4)
 Cycle      | Counter    | LED
 ------------------------------
 0          | 1          | 0
 1          | 2          | 0
-2          | 3          | 0
-3          | 4          | 0
-4          | 5          | 0
-5          | 6          | 0
-6          | 7          | 0
-7          | 8          | 0
-8          | 9          | 0
-9          | 10         | 0
-10         | 11         | 0
-11         | 12         | 0
-12         | 13         | 0
-13         | 14         | 0
+...
 14         | 15         | 0
-15         | 16         | 1 <-- LED Turns ON (Bit 4 High)
-16         | 17         | 1
-17         | 18         | 1
-18         | 19         | 1
-19         | 20         | 1
-20         | 21         | 1
-21         | 22         | 1
-22         | 23         | 1
-23         | 24         | 1
-24         | 25         | 1
-25         | 26         | 1
-26         | 27         | 1
-27         | 28         | 1
-28         | 29         | 1
-29         | 30         | 1
+15         | 16         | 1   <-- LED Turns ON (Bit 4 High)
+...
 30         | 31         | 1
-31         | 32         | 0 <-- LED Turns OFF (Bit 4 Low)
+31         | 32         | 0   <-- LED Turns OFF (Bit 4 Low)
 32         | 33         | 0
-33         | 34         | 0
-34         | 35         | 0 
-
-**Result:** The model confirms that the LED toggles correctly based on the target bit.
+Result: The model confirms that the LED toggles correctly based on the target bit.
+```
 
 ## 4. Hardware Implementation (RTL)
 The final VHDL code synthesized for the FPGA (01_Blinky/rtl/blinky.vhd).
-
-```vhdl
+```
+VHDL
 entity blinky is
     Port ( clk : in  STD_LOGIC;
            sw  : in  STD_LOGIC_VECTOR (0 downto 0);
@@ -93,6 +67,7 @@ begin
         end if;
     end process;
 end Behavioral;
+```
 
 ## 5. Constraints (UCF)
 The pin mapping for the Digilent Nexys 2 Board (01_Blinky/constraints/nexys2.ucf).
