@@ -6,5 +6,5 @@ Nexys 2: https://digilent.com/reference/programmable-logic/nexys-2/start?srsltid
 Spartan 3E XC3S500E: https://docs.amd.com/v/u/en-US/ds312
 
 ### 📄 Documentation
-* [View Full Project Report (PDF)](./01_Blinky/docs/Project_01_Report.pdf)
+* [View Full Project Report (PDF)](./01_Blinky/docs/Project_01_Blinky_Report.pdf)
 * [View Engineering Log](./00_Logbook/Day02_Blinky_Switch.md)
