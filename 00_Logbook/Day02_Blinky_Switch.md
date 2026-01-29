@@ -72,10 +72,11 @@ end Behavioral;
 ## 5. Constraints (UCF)
 The pin mapping for the Digilent Nexys 2 Board (01_Blinky/constraints/nexys2.ucf).
 
-Plaintext
+```Plaintext
 NET "clk" LOC = "B8";    # 50MHz Oscillator
 NET "sw<0>" LOC = "G18"; # Switch 0
 NET "led<0>" LOC = "J14";# LED 0
+```
 
 ## 6. Final Results
 Simulation: Validated via Python and UVM Testbench.
