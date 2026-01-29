@@ -36,3 +36,7 @@ _ngo/
 __pycache__/
 # Ignore the entire ISE build directory
 blinky_project/
+
+# Microsoft Word Temp Files
+~$*
+*.tmp
