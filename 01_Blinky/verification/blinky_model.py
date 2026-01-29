@@ -41,16 +41,17 @@ class BlinkyFPGA:
 
 # --- TEST SCENARIO ---
 if __name__ == "__main__":
-    # 1. Setup as Real Hardware
-    dut = BlinkyFPGA(simulation_mode=False)
+    # 1. CHANGE THIS: Use Simulation Mode (True) so it uses Bit 4
+    dut = BlinkyFPGA(simulation_mode=True)
     
-    # 2. Turn Switch ON (Crucial step!)
+    # 2. Turn Switch ON
     dut.sw = 1 
     
-    print(f"{'Time':<10} | {'Counter':<10} | {'LED'}")
+    print(f"{'Cycle':<10} | {'Counter':<10} | {'LED'}")
     print("-" * 30)
 
-    # 3. Run for a few cycles
-    for i in range(10):
+    # 3. CHANGE THIS: Run for 35 cycles
+    # Bit 4 (16) flips at cycle 16 and 32. We need enough time to see it!
+    for i in range(35):
         dut.rising_edge_clk()
         print(f"{i:<10} | {dut.counter:<10} | {dut.led}")
