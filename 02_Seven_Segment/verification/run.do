@@ -8,7 +8,7 @@ vcom hex_decoder.vhd
 vlog testbench.sv
 
 # 4. Initialize Simulation (Top module is 'top')
-vsim -c top
+vsim +access+r -c top
 
 # 5. Run until the testbench says $finish
 run -all
