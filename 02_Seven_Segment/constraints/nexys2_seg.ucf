@@ -1,0 +1,23 @@
+# --- SWITCHES (Inputs) ---
+NET "sw<0>" LOC = "G18"; # SW0
+NET "sw<1>" LOC = "H18"; # SW1
+NET "sw<2>" LOC = "K18"; # SW2
+NET "sw<3>" LOC = "K17"; # SW3
+
+# --- 7-SEGMENT DISPLAY (Outputs) ---
+# Segments (gfedcba) - Check board schematic for pinout
+NET "seg<0>" LOC = "L18"; # Segment a (LSB in our logic)
+NET "seg<1>" LOC = "F18"; # Segment b
+NET "seg<2>" LOC = "D17"; # Segment c
+NET "seg<3>" LOC = "D16"; # Segment d
+NET "seg<4>" LOC = "G14"; # Segment e
+NET "seg<5>" LOC = "J17"; # Segment f
+NET "seg<6>" LOC = "H14"; # Segment g (MSB in our logic)
+
+NET "dp"     LOC = "C17"; # Decimal Point
+
+# --- ANODES (Digit Select) ---
+NET "an<0>" LOC = "F17"; # Digit 0 (Rightmost)
+NET "an<1>" LOC = "H17"; # Digit 1
+NET "an<2>" LOC = "C18"; # Digit 2
+NET "an<3>" LOC = "F15"; # Digit 3 (Leftmost)
