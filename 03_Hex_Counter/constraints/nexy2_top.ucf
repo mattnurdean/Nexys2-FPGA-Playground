@@ -1,0 +1,21 @@
+# --- CLOCK ---
+NET "clk" LOC = "B8"; # 50 MHz Oscillator
+
+# --- BUTTONS ---
+NET "btn<0>" LOC = "B18"; # BTN0 (Used for Reset)
+
+# --- 7-SEGMENT DISPLAY ---
+NET "seg<0>" LOC = "L18"; # a
+NET "seg<1>" LOC = "F18"; # b
+NET "seg<2>" LOC = "D17"; # c
+NET "seg<3>" LOC = "D16"; # d
+NET "seg<4>" LOC = "G14"; # e
+NET "seg<5>" LOC = "J17"; # f
+NET "seg<6>" LOC = "H14"; # g
+NET "dp"     LOC = "C17"; # Decimal Point
+
+# --- ANODES ---
+NET "an<0>" LOC = "F17"; # Digit 0
+NET "an<1>" LOC = "H17"; # Digit 1
+NET "an<2>" LOC = "C18"; # Digit 2
+NET "an<3>" LOC = "F15"; # Digit 3
